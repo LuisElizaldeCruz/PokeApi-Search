@@ -1,12 +1,11 @@
 import './App.css'
-import Pokemon2 from './Components/Pokemon2'
+import Pokemon from './Components/Pokemon'
 
 function App() {
 
   return (
     <div className="App">
-      
-      <Pokemon2/>
+          <Pokemon/>
     </div>
   )
 }

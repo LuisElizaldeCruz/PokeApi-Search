@@ -11,12 +11,11 @@ export default function Pokemon2() {
         frontShiny: ""
     });
 
-    useEffect(()=>{
-        searchPokemon;
-    },[])
+    useEffect(() => {
+        searchPokemon();
+    }, [])
 
     const searchPokemon = async (e) => {
-        e.preventDefault();
         try {
             const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pName}`);
             const data = await res.json();
@@ -26,55 +25,59 @@ export default function Pokemon2() {
         }
     }
 
-   
 
     const handleData = (pokeData) => {
         //console.log(pokeData)
-        const { weight: weightD, types: typesD, moves: movesD, sprites: spritesD } = pokeData;
-        /* console.log("weight: ", weight);
-         console.log("types: ", types[0].type.name);
-         console.log("moves: ", moves.length);
-         console.log("img1: ",sprites.front_default);
+        const { weight: weightD, types: typesD, moves: movesD, sprites: spritesD } = pokeData;//destructuracion
+        /* 
+        console.log("weight: ", weightD);
+         console.log("types: ", typesD[0].type.name);
+         console.log("moves: ", movesD.length);
+         console.log("img1: ",spritesD.front_default);
          console.log("img1: ",spritesD.front_shiny);
          */
         setPokemon({
-            ...pokemon, weight: weightD, types: typesD[0].type.name, moves: movesD.length,
+            weight: weightD, types: typesD[0].type.name, moves: movesD.length,
             frontDefault: spritesD.front_default, frontShiny: spritesD.front_shiny
         });
-        console.log(pokemon)
     }
 
 
 
     return (
         <>
-            <h1>pokemon</h1>
-
-            <form className='form'>
+            <div className='contenedor'>
+                <h1>pokemon</h1>
                 <input className="inPokemon" placeholder='enter you pokemon' onChange={(e) => { setPName(e.target.value.toLowerCase()) }} />
-                <button className='searchPokemon' onClick={searchPokemon}>buscar pokemon</button>
+                <button className='searchPokemon' onClick={searchPokemon}>search pokemon</button>
                 <div className='dataPokemon'>
                     <div>
                         <label>weight</label>
-                        <input type="text" className='weight' value={pokemon.weight} />
+                        <input type="text" className='weight' value={pokemon.weight} readOnly />
                     </div>
                     <div>
                         <label>types</label>
-                        <input type="text" className='types' value={pokemon.types} />
+                        <input type="text" className='types' value={pokemon.types} readOnly />
                     </div>
                     <div>
                         <label>moves</label>
-                        <input type="text" className='moves' value={pokemon.moves} />
+                        <input type="text" className='moves' value={pokemon.moves} readOnly />
                     </div>
                 </div>
-            </form>
+            </div>
             <h4>Sprites</h4>
-            {
-                <div className='images'>
+
+            <div className='images'>
+                <div className='fDefault'>
+                    <h5>front_default</h5>
                     <img className='img-pokemon' src={pokemon.frontDefault} alt="pokemon-default"></img>
+                </div>
+                <div className='fShiny'>
+                    <h5>front_shiny</h5>
                     <img className='img-pokemon' src={pokemon.frontShiny} alt="pokemon-shiny"></img>
                 </div>
-            }
+            </div>
+
         </>
     )
 }
