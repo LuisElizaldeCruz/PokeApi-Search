@@ -18,15 +18,16 @@ export default function Pokemon2() {
     const searchPokemon = async (e) => {
         try {
             const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pName}`);
+            console.log(res);
             const data = await res.json();
-            handleData(data);
+            console.log(data)
+            getData(data);
         } catch (error) {
             console.log(error);
         }
     }
 
-
-    const handleData = (pokeData) => {
+    const getData = (pokeData) => {
         //console.log(pokeData)
         const { weight: weightD, types: typesD, moves: movesD, sprites: spritesD } = pokeData;//destructuracion
         /* 
