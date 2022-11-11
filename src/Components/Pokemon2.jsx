@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../assets/css/Pokemon.css";
 
 export default function Pokemon2() {
@@ -11,6 +11,10 @@ export default function Pokemon2() {
         frontShiny: ""
     });
 
+    useEffect(()=>{
+        searchPokemon;
+    },[])
+
     const searchPokemon = async (e) => {
         e.preventDefault();
         try {
@@ -22,21 +26,25 @@ export default function Pokemon2() {
         }
     }
 
-    const handleData=(pokeData)=>{
+   
+
+    const handleData = (pokeData) => {
         //console.log(pokeData)
-        const {weight:weightD, types:typesD, moves:movesD, sprites:spritesD} = pokeData;
-       /* console.log("weight: ", weight);
-        console.log("types: ", types[0].type.name);
-        console.log("moves: ", moves.length);
-        console.log("img1: ",sprites.front_default);
-        console.log("img1: ",spritesD.front_shiny);
-        */
-       setPokemon({...pokemon,weight:weightD, types:typesD[0].type.name, moves:movesD.length, 
-        frontDefault:spritesD.front_default, frontShiny:spritesD.front_shiny});
-       console.log(pokemon)
+        const { weight: weightD, types: typesD, moves: movesD, sprites: spritesD } = pokeData;
+        /* console.log("weight: ", weight);
+         console.log("types: ", types[0].type.name);
+         console.log("moves: ", moves.length);
+         console.log("img1: ",sprites.front_default);
+         console.log("img1: ",spritesD.front_shiny);
+         */
+        setPokemon({
+            ...pokemon, weight: weightD, types: typesD[0].type.name, moves: movesD.length,
+            frontDefault: spritesD.front_default, frontShiny: spritesD.front_shiny
+        });
+        console.log(pokemon)
     }
 
-   
+
 
     return (
         <>
@@ -48,21 +56,25 @@ export default function Pokemon2() {
                 <div className='dataPokemon'>
                     <div>
                         <label>weight</label>
-                        <input type="text" className='weight' value={pokemon.weight}/>
+                        <input type="text" className='weight' value={pokemon.weight} />
                     </div>
                     <div>
                         <label>types</label>
-                        <input type="text" className='types' value={pokemon.types}/>
-                    </div><div>
+                        <input type="text" className='types' value={pokemon.types} />
+                    </div>
+                    <div>
                         <label>moves</label>
-                        <input type="text" className='moves' value={pokemon.moves}/>
+                        <input type="text" className='moves' value={pokemon.moves} />
                     </div>
                 </div>
             </form>
             <h4>Sprites</h4>
-
-            {/* <img src={pokeData.sprites.front_default} alt="pokemon-default"></img>
-            <img src={pokeData.sprites.front_shiny} alt="pokemon-shiny"></img> */}
+            {
+                <div className='images'>
+                    <img className='img-pokemon' src={pokemon.frontDefault} alt="pokemon-default"></img>
+                    <img className='img-pokemon' src={pokemon.frontShiny} alt="pokemon-shiny"></img>
+                </div>
+            }
         </>
     )
 }
