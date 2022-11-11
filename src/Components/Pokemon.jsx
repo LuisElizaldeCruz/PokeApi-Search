@@ -49,8 +49,9 @@ export default function Pokemon2() {
         <>
             <div className='contenedor'>
                 <h1>pokemon</h1>
-                <input className="inPokemon" placeholder='enter you pokemon' onChange={(e) => { setPName(e.target.value.toLowerCase()) }} />
-                <button className='searchPokemon' onClick={searchPokemon}>search pokemon</button>
+                <input className="inPokemon" placeholder='enter your pokemon' onChange={(e) => { setPName(e.target.value.toLowerCase()) }} />
+                <button className='searchPokemon' onClick={searchPokemon}>Search pokemon</button>
+                
                 <div className='dataPokemon'>
                     <div>
                         <label>weight</label>
@@ -66,6 +67,7 @@ export default function Pokemon2() {
                     </div>
                 </div>
             </div>
+
             <h4>Sprites</h4>
 
             <div className='images'>
