@@ -18,9 +18,9 @@ export default function Pokemon2() {
     const searchPokemon = async (e) => {
         try {
             const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pName}`);
-            console.log(res);
+            //console.log(res);
             const data = await res.json();
-            console.log(data)
+            //console.log(data)
             getData(data);
         } catch (error) {
             console.log(error);
@@ -73,11 +73,11 @@ export default function Pokemon2() {
             <div className='images'>
                 <div className='fDefault'>
                     <h5>front_default</h5>
-                    <img className='img-pokemon' src={pokemon.frontDefault} alt="pokemon-default"></img>
+                    <img className='img-pokemon' src={pokemon.frontDefault} alt="pokemon-default"/>
                 </div>
                 <div className='fShiny'>
                     <h5>front_shiny</h5>
-                    <img className='img-pokemon' src={pokemon.frontShiny} alt="pokemon-shiny"></img>
+                    <img className='img-pokemon' src={pokemon.frontShiny} alt="pokemon-shiny"/>
                 </div>
             </div>
 
